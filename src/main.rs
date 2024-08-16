@@ -1,4 +1,5 @@
 use poise::serenity_prelude as serenity;
+use dotenv::dotenv;
 
 struct Data {} // User data, which is stored and accessible in all command invocations
 type Error = Box<dyn std::error::Error + Send + Sync>;
@@ -18,6 +19,7 @@ async fn age(
 
 #[tokio::main]
 async fn main() {
+    dotenv().ok();
     let token = std::env::var("DISCORD_TOKEN").expect("missing DISCORD_TOKEN");
     let intents = serenity::GatewayIntents::non_privileged();
 
